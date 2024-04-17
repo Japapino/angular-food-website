@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FoodService } from '../services/food/food.service';
-import { food } from '../shared/models/food';
+import { Food } from '../shared/models/food';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
@@ -14,7 +14,7 @@ import { SearchComponent } from '../search/search.component';
 })
 export class HomeComponent {
 
-  foods:food[] = [];
+  foods:Food[] = [];
   constructor(private foodService:FoodService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -22,7 +22,9 @@ export class HomeComponent {
       if(params['searchTerm']){
         this.foods = this.foodService.getAll().filter(food => 
           food.name.toLowerCase().includes(params['searchTerm'].toLowerCase()));
-      } else {
+      } else if(params['tag']) {
+        this.foods = this.foodService.getAllFoodsByTag(params['tag']);
+        } else {
         this.foods = this.foodService.getAll(); 
       }
     })
