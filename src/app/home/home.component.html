@@ -1,5 +1,27 @@
 <ul>
     @for (food of foods; track food) {
-        <li><img src="{{food}}" alt=""></li>
+        <li>
+            <a>
+                <img src="{{food.imageUrl}}" alt="">
+            </a>
+            <div>{{food.name}}</div>
+            <span class="favorite {{food.favorite?'':'not'}}">
+                ♥
+            </span>
+            <div class="product-item-footer">
+                @for (origin of food.origins; track origin) {
+                    <span>{{origin}}</span>
+                }
+                <div class="cook-time">
+                    <span>⏲</span>
+                    {{food.cooktime}}
+                </div>
+                <div class="price">
+                    <span>💰</span>
+                    {{food.price|currency:'USD':true:'1.2-2'}}
+                </div>
+            </div>
+        </li>
     }
+    
 </ul>
