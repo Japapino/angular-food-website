@@ -9,6 +9,11 @@ export class FoodService {
 
   constructor() { }
 
+  getFoodById(id: number): Food {
+    console.log('id', this.getAll().find(food => food.id === id));
+    return this.getAll().find(food => food.id === Number(id))!;
+  }
+
   getAllFoodsBySearchTerm(searchTerm: string): Food[] {
     console.log('searchTerm', searchTerm);
     return this.getAll().filter(

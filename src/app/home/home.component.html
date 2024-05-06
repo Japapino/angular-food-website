@@ -1,28 +1,26 @@
 <app-search></app-search>
 <app-tags> </app-tags>
 <ul>
-    @for (food of foods; track food) {
-        <li>
-            <a>
-                <img src="{{food.imageUrl}}" alt="">
-            </a>
-            <div>{{food.name}}</div>
-            <span class="favorite {{food.favorite?'':'not'}}">
-                ♥
-            </span>
-            <div class="product-item-footer">
-                @for (origin of food.origins; track origin) {
-                    <span>{{origin}}</span>
-                }
-                <div class="cook-time">
-                    <span>⏲</span>
-                    {{food.cooktime}}
-                </div>
-                <div class="price">
-                    {{food.price|currency:'USD':true:'1.2-2'}}
-                </div>
-            </div>
-        </li>
-    }
-    
+  @for (food of foods; track food) {
+
+  <li>
+    <a routerLink="/food/{{ food.id }}">
+      <img src="{{ food.imageUrl }}" alt="" />
+      <div>{{ food.name }}</div>
+      <span class="favorite {{ food.favorite ? '' : 'not' }}"> ♥ </span>
+      <div class="product-item-footer">
+        @for (origin of food.origins; track origin) {
+        <span>{{ origin }}</span>
+        }
+        <div class="cook-time">
+          <span>⏲</span>
+          {{ food.cooktime }}
+        </div>
+        <div class="price">
+          {{ food.price | currency : "USD" : true : "1.2-2" }}
+        </div>
+      </div>
+    </a>
+  </li>
+  }
 </ul>
